@@ -2,8 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import mysql from 'mysql'
 
-const url = "http://localhost:3000/"
-
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -30,9 +28,9 @@ export default function handler(
           const CleanName = JSON.parse(NameRaw)
 
           if(req.body.name === CleanName[0].name && req.body.password === CleanName[0].password){
-              res.json({isCorrect: true})
+              res.status(200).json({isCorrect: true})
           }else{
-            res.json({isCorrect: false})
+            res.status(404).json({isCorrect: false})
           } 
       })        
     });  
